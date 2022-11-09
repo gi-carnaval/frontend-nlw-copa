@@ -6,7 +6,7 @@
 
 </div>
 
-<h1 align="center">⚽️ NLW Copa 2022 | Project Frontend ⚙️</h1>
+<h1 align="center">⚽️ NLW Copa 2022 | Project Frontend 💻</h1>
 
 <p align="center">
   <img alt="Github top language" src="https://img.shields.io/github/languages/top/gi-carnaval/frontend-nlw-copa?color=56BEB8">
