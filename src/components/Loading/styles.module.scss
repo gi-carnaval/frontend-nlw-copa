@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
+
+  .cLoader {
+    animation: isRotating 1s infinite;
+    border: 6px solid var(--gray-100);
+    border-top-color: var(--yellow-600);
+    border-radius: 100%;
+    width: 2vw;
+    height: 2vw; 
+  }
+}
+@keyframes isRotating{
+  to{
+    transform: rotate(1turn);
+  }
+}

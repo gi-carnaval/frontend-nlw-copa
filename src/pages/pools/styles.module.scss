@@ -1,0 +1,92 @@
+.container {
+  max-width: 1124px;
+  height: calc(100vh - 5rem);
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .poolList {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .title {
+    margin-top: 3.5rem;
+    color: var(--white);
+    font-size: 3rem;
+    font-weight: bold;
+    line-height: 1.25;
+  }
+  .conectingPeople{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2.5rem;
+
+    .strongText{
+      color: var(--gray-100);
+      font-size: 1.5rem;
+
+      span {
+        color: var(--green-500)
+      }
+    }
+  }
+
+  .formPool {
+    margin-top: 2.5rem;
+    display: flex;
+    gap: 0.5rem;
+    input{
+      flex: 1;
+      padding: 1.5rem 1rem;
+      background: var(--gray-800);
+      border: solid 1px var(--gray-600);
+
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      color: var(--gray-100)
+    }
+    button {
+      color: var(--gray-800);
+      font-weight: bold;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      text-transform: uppercase;
+      padding: 1.5rem 1rem;
+
+      border-radius: 0.25rem;
+      background: var(--yellow-400);
+
+      &:hover{
+        background: var(--yellow-500)
+      }      
+    }
+  }
+  .textDescription {
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    color: var(--gray-300);
+    line-height: 1.25rem;
+    // mt-4 text-sm text-gray-300 leading-relaxed
+  }
+
+  .footerInfos {
+    color: var(--gray-100);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-top: 2.5rem;
+    padding-top: 2.5rem;
+    border-top: solid 1px var(--gray-600);
+
+
+    // mt-10 pt-10 border-t border-gray-600 flex items-center justify-between text-gray-100
+  }
+}

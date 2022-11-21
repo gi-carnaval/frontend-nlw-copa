@@ -1,0 +1,26 @@
+.participants {
+  display: flex;
+
+  .participant{
+    margin-right: -0.75rem;
+  }
+
+  .avatarImg{
+    border-radius: 100%;
+    border: 2px solid var(--gray-700);
+  }
+}
+
+.hiddenAvatar {
+  width: 2rem;
+  height: 2rem;
+  background: var(--gray-700);
+  border-radius: 100%;
+  border: 1px solid var(--gray-800);
+
+  p {
+    color: var(--gray-100);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}

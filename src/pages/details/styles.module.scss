@@ -1,0 +1,33 @@
+.detailsContainer{
+  width: 50vw;
+  margin: 0 auto;
+  // flex: 1;
+  // background: var(--gray-900);
+
+  .detailsContent{
+    padding: 1.25rem 0;
+    flex: 1;
+
+    .deatilsHero {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    input {
+      margin-bottom: 0.5rem;
+      border-radius: 0.5rem;
+      padding: 1rem;
+
+      border: 3px solid var(--yellow-500)
+    }
+  }
+
+}
+@media screen and (max-width: 720px){
+  .detailsContainer{
+    width: 90%;
+    margin:0 auto;
+  }
+}

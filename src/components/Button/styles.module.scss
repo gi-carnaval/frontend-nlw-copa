@@ -1,0 +1,34 @@
+.button {
+  width: 80%;
+  margin: 2rem 0;
+  button {
+    width: 100%;
+    height: 56px;
+    border-radius: 0.875rem;
+    display: flex;
+    font-size: 3rem;
+    text-transform: uppercase;
+    justify-content: center;
+    align-items: center;
+  }
+  .buttonTitle {
+    font-size: 1rem; 
+    font-weight: bold;
+  }
+  .buttonPrimary {
+    background: var(--yellow-500);
+    
+    &:hover{
+      background: var(--yellow-400);
+    }
+    &:active{
+      background: var(--yellow-600);
+    }
+  }
+  .buttonSecondary {
+    background: var(--red-500);
+    &:hover{
+      background: var(--yellow-400);
+    }
+  }
+}
