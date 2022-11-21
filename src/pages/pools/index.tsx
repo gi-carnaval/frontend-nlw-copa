@@ -9,7 +9,7 @@ import styles from './styles.module.scss'
 import { Button } from "../../components/Button/Button";
 import { Loading } from "../../components/Loading/Loading";
 import { PoolCard } from "../../components/PoolCard/PoolCard";
-import Link from "next/link";
+import { useRouter } from "next/router";
 
 export interface ParticipantProps {
   id: string;
@@ -37,8 +37,12 @@ export interface PoolCardProps {
 export default function Pools(){
   const [ pools, setPools ] = useState<PoolCardProps[]>([])
   const [ isLoading, setIsLoading ] = useState(true)
-  const { data: session} = useSession()
 
+  // const { data: session} = useSession()
+
+  const { data: session } = useSession()
+  const router = useRouter()
+  console.log(session?.activeSubscription)
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
 
   async function fetchPools() {
@@ -89,6 +93,7 @@ export default function Pools(){
 
 export const getServerSideProps: GetServerSideProps = async({ req, previewData, params }) => {
   const session = await getSession({ req })
+  console.log(session)
   if(!session) {
       return {
           redirect: {

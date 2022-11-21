@@ -1,6 +1,7 @@
 import { Loading } from '../Loading/Loading';
 import { useRouter } from 'next/router'
 import styles from './styles.module.scss'
+import { FormEvent } from 'react';
 
 interface Props extends React.HTMLProps<HTMLButtonElement>{
   title: string;
@@ -12,14 +13,14 @@ interface Props extends React.HTMLProps<HTMLButtonElement>{
 export function Button({ title, isLoading = null, type = 'PRIMARY', linkTo, ...rest }: Props) {
   const router = useRouter()
 
-  const handleClick = (e) => {
-    e.preventDefault()
+  const handleClick = (event: FormEvent) => {
+    event.preventDefault()
     router.push(String(linkTo))
   }
 
   return (
     <div className={styles.button}>
-      <button onClick={ linkTo ? handleClick : null } className={type === 'SECONDARY' ? styles.buttonSecondary : styles.buttonPrimary}
+      <button onClick={ linkTo ? handleClick : () => {return} } className={type === 'SECONDARY' ? styles.buttonSecondary : styles.buttonPrimary}
         {...rest}
       >
   {/*       

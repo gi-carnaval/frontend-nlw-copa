@@ -9,6 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import styles from './styles.module.scss'
 import { GetServerSideProps } from 'next';
 import { getSession, useSession } from 'next-auth/react';
+import { AxiosError } from 'axios';
 
 export default function Find(){
   const { data: session} = useSession()
@@ -40,18 +41,20 @@ export default function Find(){
     } catch(error) {
       console.log(error)
       setIsLoading(false)
+      if(error instanceof AxiosError){
+        if(error?.response?.data?.message === 'Pool not found.') {
+          return toast.error('Não foi possível encontrar o bolão', {
+            theme: "colored",
+            });
+        }
 
-      if(error?.response?.data?.message === 'Pool not found.') {
-        return toast.error('Não foi possível encontrar o bolão', {
-          theme: "colored",
-          });
+        if(error?.response?.data?.message === 'You already joined this pool.') {
+          return toast.error('Você já está neste bolão!', {
+            theme: "colored",
+            });
+        }
       }
 
-      if(error?.response?.data?.message === 'You already joined this pool.') {
-        return toast.error('Você já está neste bolão!', {
-          theme: "colored",
-          });
-      }
 
       return toast.error('Não foi possível encontrar o bolão', {
         theme: "colored",

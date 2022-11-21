@@ -30,10 +30,11 @@ export default NextAuth({
           token_response: tokenResponse.data.token
         }
   
-      } catch (err) {
-        console.log(err)
-        throw err
-        
+      } catch {
+        return {
+          ...session,
+          token_response: null 
+        }
       }
     },
     async jwt({ token, user, account }) {
