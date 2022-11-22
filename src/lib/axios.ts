@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'http://165.22.194.0/'
+  baseURL: 'https://nlw-copa-server.giovani-carnaval.com/'
 })
