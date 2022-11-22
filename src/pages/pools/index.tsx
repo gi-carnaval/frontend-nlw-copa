@@ -42,7 +42,6 @@ export default function Pools(){
 
   const { data: session } = useSession()
   const router = useRouter()
-  console.log(session?.activeSubscription)
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
 
   async function fetchPools() {

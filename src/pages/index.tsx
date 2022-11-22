@@ -8,7 +8,6 @@ import { FormEvent, useState } from 'react';
 
 import styles from './styles.module.scss'
 import { useSession } from 'next-auth/react';
-import { SignInButton } from '../components/SignInButton';
 
 interface HomeProps {
   poolCount: number;
