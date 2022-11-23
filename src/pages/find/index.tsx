@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 import { Button } from "../../components/Button/Button";
 import { api } from '../../lib/axios';
@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import styles from './styles.module.scss'
 import { GetServerSideProps } from 'next';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import { AxiosError } from 'axios';
 import { SignInButton } from '../../components/SignInButton';
 
@@ -18,6 +18,12 @@ export default function Find(){
   const [ code, setCode ] = useState('')
 
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signIn(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
 
   async function handleJoinPool(){
     try {

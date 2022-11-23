@@ -8,6 +8,21 @@
     padding: 1.25rem 0;
     flex: 1;
 
+    .sectionOptions{
+      display: flex;
+      padding: 0.25rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+
+      button{
+        background: var(--gray-800);
+      }
+      
+      .guessesDiv{
+        height: 80vh;
+        overflow: visible;
+      }
+    }
     .deatilsHero {
       color: white;
       font-size: 2rem;

@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import Image from 'next/image';
 
 import appPreviewImg from '../assets/app-nlw-copa-preview.png'
@@ -7,7 +9,7 @@ import { api } from '../lib/axios';
 import { FormEvent, useState } from 'react';
 
 import styles from './styles.module.scss'
-import { useSession } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { SignInButton } from '../components/SignInButton';
 
 interface HomeProps {
@@ -19,6 +21,12 @@ interface HomeProps {
 export default function Home(props: HomeProps) {
   const [poolTitle, setPoolTitle] = useState("")
   const { data: session } = useSession()
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signIn(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
 
   async function createPool(event: FormEvent){
     event.preventDefault()
@@ -33,7 +41,12 @@ export default function Home(props: HomeProps) {
       await navigator.clipboard.writeText(code)
 
       alert('Bolão criado com sucesso, o código foi copiado para a área de transferência!')
-
+      return {
+        redirect: {
+          destination: `/pools`,
+          permanent: false,
+        }
+      }
       setPoolTitle('')
     } catch (err) {
       // console.log(err)

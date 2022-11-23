@@ -43,7 +43,6 @@ export default function Pools(){
   const { data: session } = useSession()
   const router = useRouter()
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
-
   async function fetchPools() {
     setIsLoading(true)
     try {
@@ -92,8 +91,7 @@ export default function Pools(){
 
 export const getServerSideProps: GetServerSideProps = async({ req }) => {
   const session = await getSession({ req })
-  console.log(session)
-  if(!session) {
+  if(!session?.token_response) {
       return {
           redirect: {
               destination: `/`,

@@ -20,8 +20,6 @@ export function Guesses({ poolId, code }: Props) {
   const [secondTeamPoints, setSecondTeamPoints] = useState(''); 
 
   async function fetchGames() {
-    console.log(firstTeamPoints)
-    console.log(secondTeamPoints)
     try {
       setIsLoading(true);
 

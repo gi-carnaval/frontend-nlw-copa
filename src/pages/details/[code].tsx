@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { GetServerSideProps } from "next"
-import { getSession } from "next-auth/react"
+import { getSession, signIn, useSession } from "next-auth/react"
 import { useEffect, useState } from "react";
 
 import { PoolCardProps } from '../../components/PoolCard/PoolCard';
@@ -12,6 +12,8 @@ import { api } from "../../lib/axios";
 import { PoolHeader } from "../../components/PoolHeader/PoolHeader";
 import { EmptyMyPoolList } from "../../components/EmptyMyPoolList/EmptyMyPoolList";
 import { Guesses } from "../../components/Guesses/Guesses";
+import { Option } from "../../components/Option/Option";
+import { ParticipantCardProps, ParticipantsCard } from "../../components/ParticipantsCard/Participants";
 
 interface DetailsProps {
   id: string,
@@ -20,11 +22,19 @@ interface DetailsProps {
 
 export default function Details({ id, bearer }: DetailsProps){
 
-  // const [optionSelected, setOptionSelected] = useState<'guesses' | 'ranking'>('guesses')
+  const [optionSelected, setOptionSelected] = useState<'guesses' | 'ranking'>('guesses')
   const [isLoading, setIsLoading] = useState(true);
   const [poolDetails, setPoolDetails] = useState<PoolCardProps>({} as PoolCardProps);
+  const [participants, setparticipants] = useState<ParticipantCardProps[]>({} as ParticipantCardProps[]);
+  const { data: session } = useSession()
 
   api.defaults.headers.common['Authorization'] = `Bearer ${bearer}` 
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signIn(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
 
   async function fetchPoolDetails() {
     try {
@@ -40,7 +50,20 @@ export default function Details({ id, bearer }: DetailsProps){
       setIsLoading(false);
     }
   }
-
+  async function fetchParticipants() {
+    try {
+      setIsLoading(true)
+      const response = await api.get(`/pools/${id}/participants`);      
+      setparticipants(response.data.poolParticipants.participants);
+    } catch (error) {
+      console.log(error);
+      return toast.error('Não foi possível carregar os detalhes do bolão', {
+        theme: "colored",
+        });      
+    } finally {
+      setIsLoading(false);
+    }
+  }
   function checkDevice() { 
     if( navigator.userAgent.match(/Android/i)
     || navigator.userAgent.match(/webOS/i)
@@ -73,8 +96,9 @@ export default function Details({ id, bearer }: DetailsProps){
 
   useEffect(() => {
     fetchPoolDetails();
+    fetchParticipants();
   }, [id])
-
+  console.log(poolDetails)
   return(
     <div className={styles.detailsContainer}>
       {
@@ -82,20 +106,26 @@ export default function Details({ id, bearer }: DetailsProps){
         <div className={styles.detailsContent}>
           <PoolHeader data={poolDetails} share={share}/>
 
-          {/* <div bgColor="gray.800" p={1} rounded="sm" mb={8}>
+          <div className={styles.sectionOptions}>
             <Option 
               title='Seus palpites' 
-              isSelected={optionSelected === 'guesses'} 
-              onPress={() => setOptionSelected('guesses')}
+              isSelected={optionSelected == 'guesses' ? true : false} 
+              onClick={() => setOptionSelected('guesses')}
             />
             <Option 
-              title='Ranking do grupo' 
-              isSelected={optionSelected === 'ranking'}
-              onPress={() => setOptionSelected('ranking')}
+              title='Participantes' 
+              isSelected={optionSelected == 'ranking' ? true : false}
+              onClick={() => setOptionSelected('ranking')}
             />
-          </div> */}
+          </div> 
 
-          <Guesses poolId={poolDetails.id} code={poolDetails.code} />
+          {optionSelected == 'guesses' ? (
+            <div className={styles.testeDiv}>
+              <Guesses poolId={poolDetails.id} code={poolDetails.code} />
+            </div>
+          ) : (
+            <ParticipantsCard participants={participants}/>
+          )}
         </div>
 
         : <EmptyMyPoolList code={poolDetails.code} />

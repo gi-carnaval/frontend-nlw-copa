@@ -1,5 +1,5 @@
-import { useState } from "react";
-import 'react-toastify/dist/ReactToastify.css';
+import { useState, useEffect } from "react";
+
 
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,7 @@ import { api } from '../../lib/axios';
 
 import styles from './styles.module.scss'
 import { GetServerSideProps } from 'next';
-import { getSession, useSession } from 'next-auth/react';
+import { getSession, signIn, useSession } from 'next-auth/react';
 import { SignInButton } from '../../components/SignInButton';
 import { AxiosError } from "axios";
 
@@ -23,6 +23,12 @@ export default function FindCode({poolCode}: FindProps){
   const [isLoading, setIsLoading] = useState(false)
   const code = poolCode;
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
+
+  useEffect(() => {
+    if (session?.error === "RefreshAccessTokenError") {
+      signIn(); // Force sign in to hopefully resolve error
+    }
+  }, [session]);
 
   async function handleJoinPool(){
     try {
@@ -55,9 +61,15 @@ export default function FindCode({poolCode}: FindProps){
         }
 
         if(error?.response?.data?.message === 'You already joined this pool.') {
-          return toast.error('Você já está neste bolão!', {
+          toast.error('Você já está neste bolão!', {
             theme: "colored",
             });
+            return {
+              redirect: {
+                destination: `/pools`,
+                permanent: false,
+              }
+            }
         }
       }
 

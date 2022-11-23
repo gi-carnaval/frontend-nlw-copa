@@ -1,5 +1,5 @@
 import axios from 'axios';
 
 export const api = axios.create({
-  baseURL: 'https://www.giovani-carnaval.com/'
+  baseURL: 'http://127.0.0.1:3030/'
 })

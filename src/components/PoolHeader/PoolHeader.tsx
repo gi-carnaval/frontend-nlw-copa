@@ -10,7 +10,6 @@ interface Props {
 }
 
 export function PoolHeader({ data, share }: Props) {
-  console.log(data)
   return (
     <div className={styles.container}>
       <div className={styles.content}>

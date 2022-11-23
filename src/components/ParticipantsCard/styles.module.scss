@@ -1,0 +1,45 @@
+.participants {
+  display: grid;
+    grid-template-columns: 48% 48%;
+    gap: 1rem;
+    justify-content: center;
+
+  .participant{
+    margin-right: -0.75rem;
+    width: 100%;
+    background: var(--gray-800);
+    display: flex;
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .avatarImg{
+    border-radius: 100%;
+    border: 2px solid var(--gray-700);
+  }
+}
+
+.hiddenAvatar {
+  width: 40px;
+  height: 40px;
+  background: var(--gray-700);
+  border-radius: 100%;
+  border: 1px solid var(--gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    color: var(--gray-100);
+    font-size: 1rem;
+    font-weight: 600;
+  }
+}
+@media screen and (max-width: 720px){
+  .participants {
+    grid-template-columns: 100%;
+  }
+}

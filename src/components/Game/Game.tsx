@@ -93,7 +93,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
               actualDay == gameDate ? (
                 <h2>Não é possível palpitar no dia do jogo</h2>
               ) : (
-                <h2>Jogo Encerrado</h2>
+                <h2>Palpites Encerrados</h2>
               )          
           
         }

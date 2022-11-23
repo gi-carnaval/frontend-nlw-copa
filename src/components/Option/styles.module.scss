@@ -1,0 +1,16 @@
+.buttonOption{
+  width: 100%;
+  height: 1.75rem;
+  max-height: 1.75rem;
+
+  span{
+    height: 100%;
+    width: 100%;
+    border-radius: 1rem;
+
+    h3{
+      color: var(--gray-100);
+      font-size: 0.875rem;
+    }
+  }
+}
