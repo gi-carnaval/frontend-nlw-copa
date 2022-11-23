@@ -61,15 +61,14 @@ export default function Details({ id, bearer }: DetailsProps){
   if(checkDevice()){
     
     navigator.share({
-      text: `Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}*`
+      text: `Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}* ${'\n'}.${'\n'}.${'\n'} https://frontend-nlw-copa.vercel.app/find/${poolDetails.code}`
     })
   } else {
-    await navigator.clipboard.writeText(`Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}* ${'\n'}.${'\n'}.${'\n'} https://frontend-nlw-copa.vercel.app/find`)
+    await navigator.clipboard.writeText(`Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}* ${'\n'}.${'\n'}.${'\n'} https://frontend-nlw-copa.vercel.app/find/${poolDetails.code}`)
     return toast.success('Código do bolão copiado com sucesso. Cole em seu Whatsapp e manda pra galera', {
       theme: "colored",
     });  
   }
-  
  }
 
   useEffect(() => {
@@ -107,8 +106,6 @@ export default function Details({ id, bearer }: DetailsProps){
 
 export const getServerSideProps: GetServerSideProps = async({ req, params }) => {
   const session = await getSession({ req })
-  // console.log(session)
-
   const bearer = session?.token_response
   const { code } = params!;
 

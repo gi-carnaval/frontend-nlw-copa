@@ -36,6 +36,8 @@ interface Props {
 export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
   const [ firstTeamPointsSaved, setFirstTeamPointsSaved ] = useState(0)
   const [ secondTeamPointsSaved, setSecondTeamPointsSaved ] = useState(0)
+  const actualDay = new Date()
+  const gameDate = new Date(data.date)
 
   useEffect(() => {
     if(data.guess != null){
@@ -44,12 +46,10 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
     }
   }, [data.guess])
 
-  
-
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY");
-
   return (
     <>
+    
       <div className={styles.container}>
         <span className={styles.countriesNames}>
           {data.firstTeamCountryName} vs. {data.secondTeamCountryName}
@@ -58,13 +58,13 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
         <span className={styles.gameDate}>
           {when}
         </span>
-
         <div className={styles.gameScores}>
           <Team
             code={data.firstTeamCountryCode}
             position="right"
             onChangeText={setFirstTeamPoints}
             points={firstTeamPointsSaved}
+            isValide={actualDay < gameDate ? true : false}           
           />
 
           <IoCloseSharp className={styles.vsIcon}/>
@@ -74,11 +74,11 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             position="left"
             onChangeText={setSecondTeamPoints}
             points={secondTeamPointsSaved}
+            isValide={actualDay < gameDate ? true : false}           
           />
         </div>
-
         {
-          !data.guess &&
+          !data.guess && actualDay < gameDate ? (
           <button onClick={onGuessConfirm}>
             <span>
               <p>
@@ -88,6 +88,14 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
               <IoCheckmarkSharp className={styles.checkIcon} />
             </span>
           </button>
+          ) : 
+            
+              actualDay == gameDate ? (
+                <h2>Não é possível palpitar no dia do jogo</h2>
+              ) : (
+                <h2>Jogo Encerrado</h2>
+              )          
+          
         }
       </div>
     </>

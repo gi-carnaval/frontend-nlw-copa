@@ -9,20 +9,22 @@ interface Props {
   code: string;
   position: 'left' | 'right';
   onChangeText: (value: string) => void;
-  points?: number | string | null
+  points?: number | string | null;
+  isValide: boolean;
 }
 
-export function Team({ code, position, onChangeText, points = null }: Props) {
+export function Team({ code, position, onChangeText, points = null, isValide }: Props) {
   return (
     <div className={styles.content}>
       {position === 'left' && <ReactCountryFlag countryCode={code} svg style={{fontSize: '3em', lineHeight: '2em', marginRight: 12}}/>}
-
+      {isValide ? (
       <Input
         type='number'
         disabled={points ? true : false}
         onChange={(event: { target: { value: string; }; }) => onChangeText(event.target.value)}
         placeholder={points ? String(points) : null}
       />
+      ): null}
 
       {position === 'right' && <ReactCountryFlag countryCode={code} svg style={{fontSize: '3em', lineHeight: '2em', marginLeft: 12}}/>}
     </div>

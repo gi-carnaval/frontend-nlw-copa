@@ -26,3 +26,35 @@
     }
   }
 }
+.signInButton{
+  border-radius: 2rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+  background: var(--gray-800);
+  width: 500px;
+  margin: 2rem auto;
+
+  .signInText {
+    padding: 2rem;
+  }
+}
+
+@media screen and (max-width: 720px){
+  .signInButton{
+    border-radius: 2rem;
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    background: var(--gray-800);
+    width: 80%;
+    margin: 2rem auto;
+    align-items: stretch;
+
+    .signInText{
+      text-align: center;
+    }
+  }
+}

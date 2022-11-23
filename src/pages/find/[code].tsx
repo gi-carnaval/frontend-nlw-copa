@@ -1,18 +1,24 @@
-import { useState } from 'react'
+import { useEffect, useState } from "react";
+import 'react-toastify/dist/ReactToastify.css';
+
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { Button } from "../../components/Button/Button";
 import { api } from '../../lib/axios';
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
 import styles from './styles.module.scss'
 import { GetServerSideProps } from 'next';
 import { getSession, useSession } from 'next-auth/react';
-import { AxiosError } from 'axios';
 import { SignInButton } from '../../components/SignInButton';
+import { AxiosError } from "axios";
 
-export default function Find(){
+interface FindProps {
+  poolCode: string,
+}
+
+export default function FindCode({poolCode}: FindProps){
+
   const { data: session} = useSession()
   const [isLoading, setIsLoading] = useState(false)
   const [ code, setCode ] = useState('')
@@ -68,9 +74,6 @@ export default function Find(){
   
   return session ? (
     <div className={styles.findContainer}>
-      <ToastContainer
-        theme="colored"
-      />
       <div className={styles.findContent}>
         <div className={styles.findHero}>
           Encontre um bolão através de  {'\n'}
@@ -80,7 +83,7 @@ export default function Find(){
         <input
           placeholder="Qual código do bolão?"
           onChange={event => setCode(event.target.value)}
-          value={code}
+          value={poolCode}
           autoCapitalize="characters"
         />
 
@@ -104,10 +107,12 @@ export default function Find(){
 
 export const getServerSideProps: GetServerSideProps = async({ req, previewData, params }) => {
   const session = await getSession({ req })
+  const poolCode  = params!.code;
 
   return {
     props: {
-      session
+      session,
+      poolCode
     }
   }
 }

@@ -61,8 +61,10 @@ export function Header(){
                     <ActiveLink activeClassName={styles.active} href="/">
                         <span>Home</span>
                     </ActiveLink>
+                    <ActiveLink activeClassName={styles.active} href="/find">
+                        <span>Entrar num bolão</span>
+                    </ActiveLink>
                 </nav>
-                <SignInButton />
             </div>
         </header>
     );
