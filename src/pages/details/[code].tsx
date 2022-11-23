@@ -107,7 +107,7 @@ export default function Details({ id, bearer }: DetailsProps){
 
 export const getServerSideProps: GetServerSideProps = async({ req, params }) => {
   const session = await getSession({ req })
-  console.log(session)
+  // console.log(session)
 
   const bearer = session?.token_response
   const { code } = params!;
