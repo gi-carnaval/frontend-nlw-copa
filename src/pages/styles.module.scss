@@ -45,7 +45,7 @@
       line-height: 1.25rem;
       color: var(--gray-100)
     }
-    button {
+    .buttonCreatePool {
       color: var(--gray-800);
       font-weight: bold;
       font-size: 0.875rem;
@@ -129,7 +129,22 @@
           padding: 1.5rem 1rem;
     
           border-radius: 0.25rem;        
-        }        
+        }       
+        .buttonCreatePool {
+          color: var(--gray-800);
+          font-weight: bold;
+          font-size: 0.875rem;
+          line-height: 1.25rem;
+          text-transform: uppercase;
+          padding: 1.5rem 1rem;
+    
+          border-radius: 0.25rem;
+          background: var(--yellow-400);
+    
+          &:hover{
+            background: var(--yellow-500)
+          }      
+        } 
       }
 
         .appPreview {

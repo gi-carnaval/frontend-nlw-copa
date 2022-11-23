@@ -20,18 +20,17 @@ export function Participants({participants, count }: Props) {
     <div className={styles.participants}>
       <>
       {
-        participants && participants.map((participant) => (
+        participants && participants.map((participant, index) => index < 3 &&(
           <div className={styles.participant} key={participant.id}>
-            <Image className={styles.avatarImg}alt="avatar" src={participant.user.avatarUrl} width={50} height={50} />
+            <Image className={styles.avatarImg}alt="avatar" src={participant.user.avatarUrl} width={40} height={40} />
             <span>{participant.user?.name?.at(0)?.toUpperCase()}</span>
           </div>
         ))
       }
-      { count > 4 ? 
+      { count > 3 ? 
         <div className={styles.hiddenAvatar}>
         <p>
-          
-          {count ? `+${count - 4}` : 0}
+          {count ? `+${count - 3}` : 0}
         </p>
       </div>
       : null}

@@ -92,15 +92,15 @@ export default function Pools(){
 
 export const getServerSideProps: GetServerSideProps = async({ req }) => {
   const session = await getSession({ req })
-  // console.log(session)
-  // if(!session) {
-  //     return {
-  //         redirect: {
-  //             destination: `/`,
-  //             permanent: false,
-  //         }
-  //     }
-  // }
+  console.log(session)
+  if(!session) {
+      return {
+          redirect: {
+              destination: `/`,
+              permanent: false,
+          }
+      }
+  }
 
   return {
     props: {

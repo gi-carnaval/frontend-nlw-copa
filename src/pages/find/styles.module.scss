@@ -43,18 +43,22 @@
 }
 
 @media screen and (max-width: 720px){
-  .signInButton{
-    border-radius: 2rem;
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
-    background: var(--gray-800);
-    width: 80%;
-    margin: 2rem auto;
-    align-items: stretch;
+  .findContainer{
+    width: 90vw;
 
-    .signInText{
-      text-align: center;
+    .signInButton{
+      border-radius: 2rem;
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      background: var(--gray-800);
+      width: 80%;
+      margin: 2rem auto;
+      align-items: stretch;
+
+      .signInText{
+        text-align: center;
+      }
     }
   }
 }

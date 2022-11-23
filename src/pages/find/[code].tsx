@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import 'react-toastify/dist/ReactToastify.css';
 
 import { toast } from 'react-toastify';
@@ -21,21 +21,20 @@ export default function FindCode({poolCode}: FindProps){
 
   const { data: session} = useSession()
   const [isLoading, setIsLoading] = useState(false)
-  const [ code, setCode ] = useState('')
-
+  const code = poolCode;
   api.defaults.headers.common['Authorization'] = `Bearer ${session?.token_response}`
 
   async function handleJoinPool(){
     try {
       setIsLoading(true)
 
-      if(!poolCode.trim()){
+      if(!code.trim()){
         return toast.error('Informe o código do bolão', {
           theme: "colored",
           });
       }
-
-      await api.post('/pools/join', { poolCode })
+      console.log(code)
+      await api.post('/pools/join', { code })
       toast.success("Você entrou no bolão com sucesso");
 
       return {
@@ -82,7 +81,6 @@ export default function FindCode({poolCode}: FindProps){
 
         <input
           placeholder="Qual código do bolão?"
-          onChange={event => setCode(event.target.value)}
           value={poolCode}
           autoCapitalize="characters"
         />

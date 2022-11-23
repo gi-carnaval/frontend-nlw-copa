@@ -66,6 +66,7 @@ export default function Home(props: HomeProps) {
             value={poolTitle}
           />
           <button
+          className={styles.buttonCreatePool}
             type="submit"
           >Criar meu Bolão</button>
         </form>

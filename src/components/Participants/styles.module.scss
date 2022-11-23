@@ -12,11 +12,14 @@
 }
 
 .hiddenAvatar {
-  width: 2rem;
-  height: 2rem;
+  width: 40px;
+  height: 40px;
   background: var(--gray-700);
   border-radius: 100%;
   border: 1px solid var(--gray-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   p {
     color: var(--gray-100);
