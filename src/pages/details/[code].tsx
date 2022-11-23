@@ -64,7 +64,7 @@ export default function Details({ id, bearer }: DetailsProps){
       text: `Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}*`
     })
   } else {
-    await navigator.clipboard.writeText(`Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}*`)
+    await navigator.clipboard.writeText(`Entre no meu bolão e se divirta com os palpites dos jogos!! ${'\n'}.${'\n'}.${'\n'}.${'\n'}Código do Bolão: *${poolDetails.code}* ${'\n'}.${'\n'}.${'\n'} https://frontend-nlw-copa.vercel.app/find`)
     return toast.success('Código do bolão copiado com sucesso. Cole em seu Whatsapp e manda pra galera', {
       theme: "colored",
     });  
