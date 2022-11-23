@@ -29,13 +29,13 @@ export default function FindCode({poolCode}: FindProps){
     try {
       setIsLoading(true)
 
-      if(!code.trim()){
+      if(!poolCode.trim()){
         return toast.error('Informe o código do bolão', {
           theme: "colored",
           });
       }
 
-      await api.post('/pools/join', { code })
+      await api.post('/pools/join', { poolCode })
       toast.success("Você entrou no bolão com sucesso");
 
       return {
