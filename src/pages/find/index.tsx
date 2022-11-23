@@ -72,7 +72,7 @@ export default function Find(){
     }
   }
   
-  return session ? (
+  return session?.token_response ? (
     <div className={styles.findContainer}>
       <ToastContainer
         theme="colored"

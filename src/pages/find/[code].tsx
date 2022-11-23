@@ -83,7 +83,7 @@ export default function FindCode({poolCode}: FindProps){
     }
   }
   
-  return session ? (
+  return session?.token_response? (
     <div className={styles.findContainer}>
       <div className={styles.findContent}>
         <div className={styles.findHero}>

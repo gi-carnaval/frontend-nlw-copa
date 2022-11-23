@@ -12,7 +12,7 @@ import logoImg from '../../assets/logo.svg'
 
 export function Header(){
     const { data: session } = useSession()
-    return session ? (
+    return session?.token_response ? (
         <header className={styles.headerContainer}>
             <div className={styles.headerContent}>
                 <div className={styles.logoIgnews}>

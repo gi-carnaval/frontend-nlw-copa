@@ -69,7 +69,7 @@ export default function Home(props: HomeProps) {
             <span>+{ props.usersCount }</span> pessoas já estão usando
           </strong>
         </div>
-        {session ? 
+        {session?.token_response ? 
         <form onSubmit={createPool} className={styles.formPool}>
           <input
             type="text"
