@@ -34,17 +34,17 @@ interface Props {
 };
 
 export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
-  const [ firstTeamPointsSaved, setFirstTeamPointsSaved ] = useState(0)
-  const [ secondTeamPointsSaved, setSecondTeamPointsSaved ] = useState(0)
+  // const [ firstTeamPointsSaved, setFirstTeamPointsSaved ] = useState(0)
+  // const [ secondTeamPointsSaved, setSecondTeamPointsSaved ] = useState(0)
   const actualDay = new Date().toISOString()
   const gameDate = new Date(data.date).toISOString()
 
-  useEffect(() => {
-    if(data.guess != null){
-      setFirstTeamPointsSaved(data.guess.firstTeamPoints)
-      setSecondTeamPointsSaved(data.guess.secondTeamPoints)
-    }
-  }, [data.guess])
+  // useEffect(() => {
+  //   if(data.guess != null){
+  //     setFirstTeamPointsSaved(data.guess.firstTeamPoints)
+  //     setSecondTeamPointsSaved(data.guess.secondTeamPoints)
+  //   }
+  // }, [data.guess])
 
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY");
   return (
@@ -63,7 +63,9 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             code={data.firstTeamCountryCode}
             position="right"
             onChangeText={setFirstTeamPoints}
-            points={data.guess?.firstTeamPoints}         
+            points={data.guess?.firstTeamPoints}
+            guess={data.guess ? true : false}
+            gameHappened={actualDay > gameDate ? true : false}
           />
 
           <IoCloseSharp className={styles.vsIcon}/>
@@ -72,7 +74,9 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             code={data.secondTeamCountryCode}
             position="left"
             onChangeText={setSecondTeamPoints}
-            points={data.guess?.secondTeamPoints}       
+            points={data.guess?.secondTeamPoints}
+            guess={data.guess ? true : false}
+            gameHappened={actualDay > gameDate ? true : false}
           />
         </div>
         {

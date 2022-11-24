@@ -130,7 +130,7 @@ export default function Details({ id, bearer }: DetailsProps){
             <>
               <div className={styles.buttonHidde}>
                 <button onClick={() => handleHiddeGame()} className={hiddeGames ? styles.buttonHiddenInactive : styles.buttonHiddenActive}>
-                  Esconder Jogos Passados
+                  Esconder Jogos Encerrados
                 </button>
               </div>
               <div className={styles.guessesDiv}>

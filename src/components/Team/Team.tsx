@@ -10,19 +10,21 @@ interface Props {
   position: 'left' | 'right';
   onChangeText: (value: string) => void;
   points?: number | string | null;
+  guess: boolean;
+  gameHappened: boolean;
   // isValide: boolean;
 }
 
-export function Team({ code, position, onChangeText, points = null }: Props) {
+export function Team({ code, position, onChangeText, points = null, guess, gameHappened }: Props) {
   return (
     <div className={styles.content}>
       {position === 'left' && <><ReactCountryFlag countryCode={code}  style={{fontSize: '1.5rem', lineHeight: 'em', marginRight: 12}}/><ReactCountryFlag countryCode={code} svg className={styles.flagsLeft}/></>}
       
       <Input
         type='number'
-        disabled={points ? true : false}
+        disabled={(points || gameHappened) ? true : false}
         onChange={(event: { target: { value: string; }; }) => onChangeText(event.target.value)}
-        placeholder={points ? String(points) : null}
+        placeholder={points ? String(points) : gameHappened ? '*' : null}
       />
       
 
