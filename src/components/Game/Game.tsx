@@ -63,7 +63,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             code={data.firstTeamCountryCode}
             position="right"
             onChangeText={setFirstTeamPoints}
-            points={firstTeamPointsSaved}         
+            points={data.guess?.firstTeamPoints}         
           />
 
           <IoCloseSharp className={styles.vsIcon}/>
@@ -72,7 +72,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             code={data.secondTeamCountryCode}
             position="left"
             onChangeText={setSecondTeamPoints}
-            points={secondTeamPointsSaved}       
+            points={data.guess?.secondTeamPoints}       
           />
         </div>
         {
