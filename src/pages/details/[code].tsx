@@ -14,6 +14,7 @@ import { EmptyMyPoolList } from "../../components/EmptyMyPoolList/EmptyMyPoolLis
 import { Guesses } from "../../components/Guesses/Guesses";
 import { Option } from "../../components/Option/Option";
 import { ParticipantCardProps, ParticipantsCard } from "../../components/ParticipantsCard/Participants";
+import { Button } from "../../components/Button/Button";
 
 interface DetailsProps {
   id: string,
@@ -26,6 +27,7 @@ export default function Details({ id, bearer }: DetailsProps){
   const [isLoading, setIsLoading] = useState(true);
   const [poolDetails, setPoolDetails] = useState<PoolCardProps>({} as PoolCardProps);
   const [participants, setparticipants] = useState<ParticipantCardProps[]>({} as ParticipantCardProps[]);
+  const [hiddeGames, setHiddeGames] = useState(false)
   const { data: session } = useSession()
 
   api.defaults.headers.common['Authorization'] = `Bearer ${bearer}` 
@@ -94,6 +96,10 @@ export default function Details({ id, bearer }: DetailsProps){
   }
  }
 
+ function handleHiddeGame(){
+  setHiddeGames(!hiddeGames)
+ }
+
   useEffect(() => {
     fetchPoolDetails();
     fetchParticipants();
@@ -104,30 +110,38 @@ export default function Details({ id, bearer }: DetailsProps){
       {
         poolDetails._count?.participants > 0 ? 
         <div className={styles.detailsContent}>
-          <PoolHeader data={poolDetails} share={share}/>
+          <div className={styles.headerDetails}>
+            <PoolHeader data={poolDetails} share={share}/>
 
-          <div className={styles.sectionOptions}>
-            <Option 
-              title='Seus palpites' 
-              isSelected={optionSelected == 'guesses' ? true : false} 
-              onClick={() => setOptionSelected('guesses')}
-            />
-            <Option 
-              title='Participantes' 
-              isSelected={optionSelected == 'ranking' ? true : false}
-              onClick={() => setOptionSelected('ranking')}
-            />
-          </div> 
-
-          {optionSelected == 'guesses' ? (
-            <div className={styles.testeDiv}>
-              <Guesses poolId={poolDetails.id} code={poolDetails.code} />
+            <div className={styles.sectionOptions}>
+              <Option 
+                title='Seus palpites' 
+                isSelected={optionSelected == 'guesses' ? true : false} 
+                onClick={() => setOptionSelected('guesses')}
+              />
+              <Option 
+                title='Participantes' 
+                isSelected={optionSelected == 'ranking' ? true : false}
+                onClick={() => setOptionSelected('ranking')}
+              />
+              </div>
             </div>
+          {optionSelected == 'guesses' ? (
+            <>
+              <div className={styles.buttonHidde}>
+                <button onClick={() => handleHiddeGame()} className={hiddeGames ? styles.buttonHiddenInactive : styles.buttonHiddenActive}>
+                  Esconder Jogos Passados
+                </button>
+              </div>
+              <div className={styles.guessesDiv}>
+                <Guesses poolId={poolDetails.id} code={poolDetails.code} hiddeGames={hiddeGames}/>
+              </div>
+            </>
+            
           ) : (
             <ParticipantsCard participants={participants}/>
           )}
         </div>
-
         : <EmptyMyPoolList code={poolDetails.code} />
       }
     </div>

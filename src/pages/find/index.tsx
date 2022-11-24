@@ -38,12 +38,7 @@ export default function Find(){
       await api.post('/pools/join', { code })
       toast.success("Você entrou no bolão com sucesso");
 
-      return {
-        redirect: {
-          destination: `/pools`,
-          permanent: false,
-        }
-      }
+      return window.location.href = "/pools";
       
     } catch(error) {
       console.log(error)
@@ -56,9 +51,10 @@ export default function Find(){
         }
 
         if(error?.response?.data?.message === 'You already joined this pool.') {
-          return toast.error('Você já está neste bolão!', {
+          toast.error('Você já está neste bolão!', {
             theme: "colored",
             });
+            return window.location.href = "/pools";
         }
       }
 

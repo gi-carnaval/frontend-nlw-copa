@@ -11,9 +11,10 @@ import {  toast } from 'react-toastify';
 interface Props {
   poolId: string;
   code: string;
+  hiddeGames: boolean;
 }
 
-export function Guesses({ poolId, code }: Props) {
+export function Guesses({ poolId, code, hiddeGames }: Props) {
   const [isLoading, setIsLoading] = useState(true);
   const [games, setGames] = useState<GameProps[]>([]);
   const [firstTeamPoints, setFirstTeamPoints] = useState('');
@@ -74,15 +75,25 @@ export function Guesses({ poolId, code }: Props) {
   return (
     <>
       {games.map((item) => {
-      return(
-        <Game
+      return hiddeGames ?
+        new Date() < new Date(item.date) ?
+          (
+            <Game
+              key={item.id}
+              data={item}
+              setFirstTeamPoints={setFirstTeamPoints}
+              setSecondTeamPoints={setSecondTeamPoints}
+              onGuessConfirm={() => handleGuessConfirm(item.id)}
+            />
+            ) : null
+          :
+          <Game
           key={item.id}
           data={item}
           setFirstTeamPoints={setFirstTeamPoints}
           setSecondTeamPoints={setSecondTeamPoints}
           onGuessConfirm={() => handleGuessConfirm(item.id)}
         />
-        )
     })}
     </>
   );

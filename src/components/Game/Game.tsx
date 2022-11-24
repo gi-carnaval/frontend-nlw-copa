@@ -36,9 +36,9 @@ interface Props {
 export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessConfirm }: Props) {
   const [ firstTeamPointsSaved, setFirstTeamPointsSaved ] = useState(0)
   const [ secondTeamPointsSaved, setSecondTeamPointsSaved ] = useState(0)
-  const actualDay = new Date()
-  const gameDate = new Date(data.date)
-
+  const actualDay = new Date().toISOString()
+  const gameDate = new Date(data.date).toISOString()
+  
   useEffect(() => {
     if(data.guess != null){
       setFirstTeamPointsSaved(data.guess.firstTeamPoints)
@@ -49,7 +49,6 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY");
   return (
     <>
-    
       <div className={styles.container}>
         <span className={styles.countriesNames}>
           {data.firstTeamCountryName} vs. {data.secondTeamCountryName}
@@ -64,17 +63,15 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             position="right"
             onChangeText={setFirstTeamPoints}
             points={firstTeamPointsSaved}
-            isValide={actualDay < gameDate ? true : false}           
+            isValide={actualDay < gameDate ? true : false} 
           />
-
           <IoCloseSharp className={styles.vsIcon}/>
-
           <Team
             code={data.secondTeamCountryCode}
             position="left"
             onChangeText={setSecondTeamPoints}
             points={secondTeamPointsSaved}
-            isValide={actualDay < gameDate ? true : false}           
+            isValide={actualDay < gameDate ? true : false}
           />
         </div>
         {
@@ -89,13 +86,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
             </span>
           </button>
           ) : 
-            
-              actualDay == gameDate ? (
-                <h2>Não é possível palpitar no dia do jogo</h2>
-              ) : (
-                <h2>Palpites Encerrados</h2>
-              )          
-          
+          <h2>Palpites Encerrados</h2>
         }
       </div>
     </>

@@ -65,6 +65,7 @@ export function Header(){
                         <span>Entrar num bolão</span>
                     </ActiveLink>
                 </nav>
+                <SignInButton />
             </div>
         </header>
     );

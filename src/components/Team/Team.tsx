@@ -16,7 +16,7 @@ interface Props {
 export function Team({ code, position, onChangeText, points = null, isValide }: Props) {
   return (
     <div className={styles.content}>
-      {position === 'left' && <ReactCountryFlag countryCode={code} svg style={{fontSize: '3em', lineHeight: '2em', marginRight: 12}}/>}
+      {position === 'left' && <><ReactCountryFlag countryCode={code}  style={{fontSize: '1.5rem', lineHeight: 'em', marginRight: 12}}/><ReactCountryFlag countryCode={code} svg className={styles.flagsLeft}/></>}
       {isValide ? (
       <Input
         type='number'
@@ -26,7 +26,7 @@ export function Team({ code, position, onChangeText, points = null, isValide }: 
       />
       ): null}
 
-      {position === 'right' && <ReactCountryFlag countryCode={code} svg style={{fontSize: '3em', lineHeight: '2em', marginLeft: 12}}/>}
+      {position === 'right' && <><ReactCountryFlag countryCode={code} svg className={styles.flagsRight}/><ReactCountryFlag countryCode={code} style={{fontSize: '1.5rem', lineHeight: '2em', marginLeft: 12}}/></>}
     </div>
   );
 }

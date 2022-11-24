@@ -43,12 +43,7 @@ export default function FindCode({poolCode}: FindProps){
       await api.post('/pools/join', { code })
       toast.success("Você entrou no bolão com sucesso");
 
-      return {
-        redirect: {
-          destination: `/pools`,
-          permanent: false,
-        }
-      }
+      return window.location.href = '/pools'
       
     } catch(error) {
       console.log(error)
@@ -64,12 +59,7 @@ export default function FindCode({poolCode}: FindProps){
           toast.error('Você já está neste bolão!', {
             theme: "colored",
             });
-            return {
-              redirect: {
-                destination: `/pools`,
-                permanent: false,
-              }
-            }
+            return window.location.href = '/pools'
         }
       }
 

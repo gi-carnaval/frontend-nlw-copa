@@ -41,13 +41,8 @@ export default function Home(props: HomeProps) {
       await navigator.clipboard.writeText(code)
 
       alert('Bolão criado com sucesso, o código foi copiado para a área de transferência!')
-      return {
-        redirect: {
-          destination: `/pools`,
-          permanent: false,
-        }
-      }
       setPoolTitle('')
+      return window.location.href = `/find/${code}`;
     } catch (err) {
       // console.log(err)
       alert('Falha ao criar o bolão, tente novamente')

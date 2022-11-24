@@ -22,11 +22,27 @@
     border: 1px solid var(--gray-600);
   }
 }
-@media screen and (max-width: 720px){
+@media screen and (max-width: 370px){
   .input {
-    padding: 0.875rem;
+    // padding: 0.875rem;
     height: 3rem;
-    width: 4rem;
-    border: 2px solid var(--gray-600);
+    width: 1rem;
+    // border: 2px solid var(--gray-600);
+  }
+}
+@media screen and (max-width: 460px) and (min-width: 370px){
+  .input {
+    // padding: 0.875rem;
+    height: 3rem;
+    width: 15vw;
+    // border: 2px solid var(--gray-600);
+  }
+}
+@media screen and (max-width: 720px) and (min-width: 460px){
+  .input {
+    // padding: 0.875rem;
+    height: 50%;
+    width: 50%;
+    // border: 2px solid var(--gray-600);
   }
 }

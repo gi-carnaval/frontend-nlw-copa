@@ -10,9 +10,10 @@
   padding: 1rem;
 
   .countriesNames {
-    color: var(--gray-100);
+    color: var(--yellow-500);
     font-size: 1.25rem;
     line-height: 1.75rem;
+    font-weight: 600;
   }
 
   .gameDate {
@@ -30,7 +31,7 @@
 
     .vsIcon {
       color: var(--gray-300);
-      font-size: 2.5rem;;
+      font-size: 1.5rem;;
     }
   }
 
