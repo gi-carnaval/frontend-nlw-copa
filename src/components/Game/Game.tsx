@@ -47,6 +47,7 @@ export function Game({ data, setFirstTeamPoints, setSecondTeamPoints, onGuessCon
   // }, [data.guess])
 
   const when = dayjs(data.date).locale(ptBR).format("DD [de] MMMM [de] YYYY");
+  console.log(data)
   return (
     <>
     

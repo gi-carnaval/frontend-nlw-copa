@@ -17,14 +17,14 @@ interface Props {
 export function Team({ code, position, onChangeText, points = null, guess, gameHappened }: Props) {
   return (
     <div className={styles.content}>
-      {position === 'left' && <><ReactCountryFlag countryCode={code}  style={{fontSize: '1.5rem', lineHeight: 'em', marginRight: 12}}/><ReactCountryFlag countryCode={code} svg className={styles.flagsLeft}/></>}
+      {position === 'left' && <><span className={styles.codeCountry}>{code}</span><ReactCountryFlag countryCode={code} svg className={styles.flagsLeft}/></>}
       <Input
         type='number'
         disabled={(points != null || gameHappened) ? true : false}
         onChange={(event: { target: { value: string; }; }) => onChangeText(event.target.value)}
         placeholder={points != null ? points : gameHappened ? '*' : null}
       />
-      {position === 'right' && <><ReactCountryFlag countryCode={code} svg className={styles.flagsRight}/><ReactCountryFlag countryCode={code} style={{fontSize: '1.5rem', lineHeight: '2em', marginLeft: 12}}/></>}
+      {position === 'right' && <><ReactCountryFlag countryCode={code} svg className={styles.flagsRight}/><span className={styles.codeCountry}>{code}</span></>}
     </div>
   );
 }

@@ -1,6 +1,12 @@
 .content {
   align-items: center;
-  
+  .codeCountry{
+    font-size: 1em;
+    line-height: 2em;
+    margin:0 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
   .flagsRight{
     font-size: 3em;
     line-height: 2em;
