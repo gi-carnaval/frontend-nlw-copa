@@ -39,7 +39,6 @@ export default function FindCode({poolCode}: FindProps){
           theme: "colored",
           });
       }
-      console.log(code)
       await api.post('/pools/join', { code })
       toast.success("Você entrou no bolão com sucesso");
 

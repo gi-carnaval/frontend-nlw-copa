@@ -47,7 +47,6 @@ export default function Pools(){
     setIsLoading(true)
     try {
       const response = await api.get('/pools')
-      // console.log("response", response)
       setPools(response.data.pools)
 
     } catch(error) {
@@ -64,7 +63,6 @@ export default function Pools(){
     }
   }, [session])
 
-  // console.log( pools)
   return(
     <>
       <div className={styles.container}>

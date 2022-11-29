@@ -9,25 +9,21 @@ interface Props {
   code: string;
   position: 'left' | 'right';
   onChangeText: (value: string) => void;
-  points?: number | string | null;
+  points?: string | string | null;
   guess: boolean;
   gameHappened: boolean;
-  // isValide: boolean;
 }
 
 export function Team({ code, position, onChangeText, points = null, guess, gameHappened }: Props) {
   return (
     <div className={styles.content}>
       {position === 'left' && <><ReactCountryFlag countryCode={code}  style={{fontSize: '1.5rem', lineHeight: 'em', marginRight: 12}}/><ReactCountryFlag countryCode={code} svg className={styles.flagsLeft}/></>}
-      
       <Input
         type='number'
-        disabled={(points || gameHappened) ? true : false}
+        disabled={(points != null || gameHappened) ? true : false}
         onChange={(event: { target: { value: string; }; }) => onChangeText(event.target.value)}
-        placeholder={points ? String(points) : gameHappened ? '*' : null}
+        placeholder={points != null ? points : gameHappened ? '*' : null}
       />
-      
-
       {position === 'right' && <><ReactCountryFlag countryCode={code} svg className={styles.flagsRight}/><ReactCountryFlag countryCode={code} style={{fontSize: '1.5rem', lineHeight: '2em', marginLeft: 12}}/></>}
     </div>
   );

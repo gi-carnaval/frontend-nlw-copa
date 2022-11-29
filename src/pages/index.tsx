@@ -37,14 +37,12 @@ export default function Home(props: HomeProps) {
       });
 
       const { code } = response.data
-      // console.log(code)
       await navigator.clipboard.writeText(code)
 
       alert('Bolão criado com sucesso, o código foi copiado para a área de transferência!')
       setPoolTitle('')
       return window.location.href = `/find/${code}`;
     } catch (err) {
-      // console.log(err)
       alert('Falha ao criar o bolão, tente novamente')
     }
   }
@@ -129,7 +127,6 @@ export const getStaticProps = async () => {
     api.get('guesses/count'),
     api.get('users/count')
   ])
-  // console.log(poolCountResponse.data)
   return {
     props: {
       poolCount: poolCountResponse.data.count,

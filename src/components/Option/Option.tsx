@@ -6,7 +6,6 @@ interface Props extends  React.DetailedHTMLProps<React.HTMLAttributes<HTMLButton
 }
 
 export function Option({ title, isSelected = false, ...rest }: Props) {
-  {console.log(isSelected)}
   return (    
     <button className={styles.buttonOption} {...rest} style={{background: isSelected ?  '#323238'  : 'transparent'}}>
       

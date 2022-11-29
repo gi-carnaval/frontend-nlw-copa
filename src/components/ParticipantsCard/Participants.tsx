@@ -22,7 +22,6 @@ interface Props {
 
 export function ParticipantsCard({ participants }: Props) {
   const [isLoading, setIsLoading] = useState(true);
-// console.log(participants)
   return (
     <div className={styles.participants}>
       <>

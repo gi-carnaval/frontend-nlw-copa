@@ -75,7 +75,6 @@ export default function Details({ id, bearer }: DetailsProps){
     fetchPoolDetails();
     fetchParticipants();
   }, [id])
-  console.log(poolDetails)
   return(
     <div className={styles.detailsContainer}>
       {
