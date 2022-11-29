@@ -9,7 +9,7 @@ interface Props {
   code: string;
   position: 'left' | 'right';
   onChangeText: (value: string) => void;
-  points?: string | string | null;
+  points?: number | string | null;
   guess: boolean;
   gameHappened: boolean;
 }
