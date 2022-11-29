@@ -35,6 +35,7 @@
     display: flex;
     justify-content: center;
     button {
+      color: black;
       width: 20%;
       margin: 2rem 0;
       height: 56px;
@@ -49,18 +50,15 @@
 
     .buttonHiddenActive{
       background: var(--yellow-500);
+      color: black;
     }
     .buttonHiddenInactive{
       background: var(--yellow-600);
+      color: black;
       transform: scale(0.9);
     }
   }
-    // .deatilsHero {
-    //   color: white;
-    //   font-size: 2rem;
-    //   margin-bottom: 2rem;
-    //   text-align: center;
-    // }
+
 
     input {
       margin-bottom: 0.5rem;
