@@ -17,6 +17,9 @@
     }
 
     .codeContent {
+      display: flex;
+      justify-content: center;
+      cursor: pointer;
       .subtitle{
         color: var(--gray-200);
         font-size: 1rem;
@@ -26,6 +29,12 @@
         color: var(--gray-200);
         font-size: 1rem;
         line-height: 1.5rem;
+
+        svg{
+          &:hover{
+            filter: brightness(0.8);
+          }
+        }
       }
     }
   }
@@ -39,7 +48,7 @@
     border-radius: 0.875rem;
     align-items: center;
     margin-bottom: 1rem;
-
+    display: none;
     h4{
       font-size: 1rem;
       margin-right: 1rem;
@@ -50,11 +59,24 @@
 @media screen and (max-width: 720px){
   .container{
     padding: 7rem 0;
+    .shareButton{
+      display: block;
+    }
     .content{
       padding-bottom: 1rem;
       display: flex;
       flex-direction: column;
       align-items: center;
+
+      
+
+      .codeContent{
+        .code{
+          svg{
+            display: none;
+          }
+        }
+      }
     }
   }
 }
